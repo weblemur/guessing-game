@@ -5,37 +5,51 @@
   <title>Martin Gutfeldt's Guessing Game!</title>
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <script src="js/triangles.min.js"></script>
 </head>
 <body>
-  <header id="main_header">
-    <h1>Care to Guess?</h1>
-    <h2>Choose a number between 1 and 100!</h2>
-  </header>
-  
-  <div id="game">
-    <div id="selection">
-      <input type="number" placeholder="#" min="1" max="100">
-      <button id="guess" class="button guess">Guess!</button>
+  <div id="page">
+    <header id="main_header">
+      <h1>Care to Guess?</h1>
+      <h2>Choose a number between 1 and 100!</h2>
+    </header>
+    
+    <div id="game">
+      <div id="selection">
+        <input type="number" placeholder="#" min="1" max="100">
+        <button id="guess" class="button guess">Guess!</button>
+      </div>
+      
+      <div id="guesses">
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </div>
+      
+      <div id="controls">
+        <button class="button control">Reset</button>
+        <button class="button control">Hint</button>
+      </div>
     </div>
     
-    <div id="guesses">
-      <ul>
-        <li>-</li>
-        <li>-</li>
-        <li>-</li>
-        <li>-</li>
-        <li>-</li>
-      </ul>
-    </div>
-    
-    <div id="controls">
-      <button class="button control">Reset</button>
-      <button class="button control">Hint</button>
-    </div>
+    <footer id="main_footer">
+      <p>Project by <a href="http://weblemur.net/" target="_blank" rel="author">Martin Gutfeldt</a></p>
+    </footer>
   </div>
-  
-  <footer id="main_footer">
-    <p>Project by <a href="http://weblemur.net/" target="_blank" rel="author">Martin Gutfeldt</a></p>
-  </footer>  
+  <script>
+    var pattern = Trianglify({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      cell_size: 88,
+      x_colors: ['#023a1e', '#71c7ad', '#0c112b'],
+      y_colors: ['#c0ded5', '#c6f5ea', '#71c7ad', '#1a1132'],
+      variance: 0.8
+    });
+    document.body.insertBefore(pattern.canvas(), document.getElementById('page'));
+  </script>
 </body>
 </html>
