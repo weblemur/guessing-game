@@ -17,6 +17,7 @@ body {
   /* Adjust font-size and line-height based on rem units */
   /* Size everything to a 22px high baseline (2.2rem) to maintain vertical rhythm*/
   font-size: 1.8rem;
+  font-family: 'Dosis', 'Futura', sans;
   background: linear-gradient(to bottom, #c0ded5, #71c7ad 40%, #061125 90%);
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -46,6 +47,10 @@ p, li {
 
 ul {
   list-style: none;
+}
+
+button, input {
+  font-family: 'Dosis', 'Futura', sans;
 }
 
 button:focus, input:focus {
@@ -101,7 +106,7 @@ button {
   margin: -5rem 0 0 7.6rem;
   border-radius: 100%;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   background: #fafffc;
 }
