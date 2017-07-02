@@ -135,13 +135,38 @@ button {
 }
 
 #guesses li {
+  position: relative;
   display: inline-block;
   width: 6.6rem;
-  height: 6.6rem;
-  border-radius: 8px;
+  height: 4.6rem;
+  margin: 1.6rem 0.3rem;
   font-size: 2.8rem;
-  line-height: 6.6rem;
+  line-height: 4.6rem;
   background: rgba(209, 231, 255, 0.6);
+}
+
+#guesses li:before {
+  content: "";
+  position: absolute;
+  top: -1.6rem;
+  left: 0;
+  border-bottom: 1.6rem solid rgba(209, 231, 255, 0.6);
+  border-left: 3.3rem solid transparent;
+  border-right: 3.3rem solid transparent;
+  width: 0;
+  height: 0;
+}
+
+#guesses li:after {
+  content: "";
+  position: absolute;
+  bottom: -1.6rem;
+  left: 0;
+  border-top: 1.6rem solid rgba(209, 231, 255, 0.6);
+  border-left: 3.3rem solid transparent;
+  border-right: 3.3rem solid transparent;
+  width: 0;
+  height: 0;
 }
 
 #main_footer {
