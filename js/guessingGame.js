@@ -31,21 +31,17 @@ Game.prototype.isLower = function() {
   return this.playersGuess <  this.winningNumber;
 };
 
-Game.prototype.playersGuessSubmission = function(num) {
-  if (num > 100 || num < 1 || isNaN(num)) throw 'That is an invalid guess.';
-  this.playersGuess = num;
-  return this.checkGuess(num);
+Game.prototype.isOver = function() {
+  return this.pastGuesses.length >= 5 || this.checkGuess();
 };
 
-Game.prototype.checkGuess = function(num) {
-  if (num === this.winningNumber) return 'You Win!';
-  else if (this.pastGuesses.includes(num)) return 'You have already guessed that number.';
-  this.pastGuesses.push(num);
-  if (this.pastGuesses.length >= 5) return 'You Lose.';
-  else if (this.difference() < 10) return 'You\'re burning up!';
-  else if (this.difference() < 25) return 'You\'re lukewarm.';
-  else if (this.difference() < 50) return 'You\'re a bit chilly.';
-  else return 'You\'re ice cold!';
+Game.prototype.playersGuessSubmission = function(num) {
+  if (num > 100 || num < 1 || isNaN(num)) throw 'That is an invalid guess.';
+  this.playersGuess = parseInt(num, 10);
+};
+
+Game.prototype.checkGuess = function() {
+  return this.playersGuess === this.winningNumber;
 };
 
 Game.prototype.provideHint = function() {
@@ -56,12 +52,51 @@ Game.prototype.provideHint = function() {
 
 $(document).ready(function() {
   var game = new Game(),
+      $title = $('#main_header h1'),
+      $subtitle = $('#main_header h2'),
       $submitGuess = $('#guess'),
       $guess = $submitGuess.prev();
 
   function makeGuess() {
-    console.log(game.playersGuessSubmission($guess.val()));
+    var title = '', sub = 'Choose a number between 1 and 100!';
+    if (game.isOver()) return false;
+    game.playersGuessSubmission($guess.val());
     $guess.val('');
+    if (game.checkGuess()) {
+      $title.text('Congratulations! You guessed correctly!');
+      $subtitle.text('Hit Reset to play again.');
+      $submitGuess.prop('disabled', true);
+      return true;
+    } else if (game.pastGuesses.includes(game.playersGuess)) {
+      title = 'You have already guessed that number. Try again!';
+    }
+
+    game.pastGuesses.push(game.playersGuess);
+
+    if (game.isOver()) {
+      title = 'Oh no! You\'ve lost!';
+      sub = 'Hit Reset to try again.';
+      $submitGuess.prop('disabled', true);
+    } else {
+      if (game.difference() < 10) {
+        title = 'You\'re burning up!';
+      } else if (game.difference() < 25) {
+        title = 'You\'re lukewarm.';
+      } else if (game.difference() < 50) {
+        title = 'You\'re a bit chilly.';
+      } else {
+        title = 'You\'re ice cold!';
+      }
+
+      if (game.isLower()) {
+        sub = 'Try a higher number.';
+      } else {
+        sub = 'Try a lower number.';
+      }
+    }
+
+    $title.text(title);
+    $subtitle.text(sub);
   }
 
   $submitGuess.on('click', makeGuess);
