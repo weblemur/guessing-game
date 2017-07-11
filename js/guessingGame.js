@@ -51,3 +51,15 @@ Game.prototype.checkGuess = function(num) {
 Game.prototype.provideHint = function() {
   return shuffle([this.winningNumber, generateWinningNumber(), generateWinningNumber()]);
 };
+
+// Game implementation //
+
+$(document).ready(function() {
+  var game = new Game(),
+      $submitGuess = $('#guess'),
+      $guess = $submitGuess.prev();
+  $submitGuess.on('click', function() {
+    console.log(game.playersGuessSubmission($guess.val()));
+    $guess.val('');
+  });
+});
