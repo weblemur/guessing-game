@@ -65,4 +65,7 @@ $(document).ready(function() {
   }
 
   $submitGuess.on('click', makeGuess);
+  $guess.on('keyup', function(evt) {
+    if (evt.which === 13) makeGuess();
+  });
 });
