@@ -58,8 +58,11 @@ $(document).ready(function() {
   var game = new Game(),
       $submitGuess = $('#guess'),
       $guess = $submitGuess.prev();
-  $submitGuess.on('click', function() {
+
+  function makeGuess() {
     console.log(game.playersGuessSubmission($guess.val()));
     $guess.val('');
-  });
+  }
+
+  $submitGuess.on('click', makeGuess);
 });
