@@ -55,7 +55,8 @@ $(document).ready(function() {
       $title = $('#main_header h1'),
       $subtitle = $('#main_header h2'),
       $submitGuess = $('#guess'),
-      $guess = $submitGuess.prev();
+      $guess = $submitGuess.prev(),
+      $hint = $('#hint');
 
   function makeGuess() {
     var title = '', sub = 'Choose a number between 1 and 100!';
@@ -66,6 +67,7 @@ $(document).ready(function() {
       $title.text('Congratulations! You guessed correctly!');
       $subtitle.text('Hit Reset to play again.');
       $submitGuess.prop('disabled', true);
+      $hint.prop('disabled', true);
       return true;
     } else if (game.pastGuesses.includes(game.playersGuess)) {
       title = 'You have already guessed that number. Try again!';
@@ -77,6 +79,7 @@ $(document).ready(function() {
       title = 'Oh no! You\'ve lost!';
       sub = 'Hit Reset to try again.';
       $submitGuess.prop('disabled', true);
+      $hint.prop('disabled', true);
     } else {
       if (game.difference() < 10) {
         title = 'You\'re burning up!';
