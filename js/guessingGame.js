@@ -114,9 +114,15 @@ $(document).ready(function() {
     $hint.prop('disabled', false);
   }
 
+  function showHint() {
+    var hints = game.provideHint();
+    $title.text('The correct number is either ' + hints[0] + ', ' + hints[1] + ', or ' + hints[2]);
+  }
+
   $submitGuess.on('click', makeGuess);
   $guess.on('keyup', function(evt) {
     if (evt.which === 13) makeGuess();
   });
   $reset.on('click', resetGame);
+  $hint.on('click', showHint);
 });
