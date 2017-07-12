@@ -105,8 +105,18 @@ $(document).ready(function() {
     $subtitle.text(sub);
   }
 
+  function resetGame() {
+    game = newGame();
+    $title.text('Care to Guess?');
+    $subtitle.text('Choose a number between 1 and 100!');
+    $pastGuesses.text('-');
+    $submitGuess.prop('disabled', false);
+    $hint.prop('disabled', false);
+  }
+
   $submitGuess.on('click', makeGuess);
   $guess.on('keyup', function(evt) {
     if (evt.which === 13) makeGuess();
   });
+  $reset.on('click', resetGame);
 });
