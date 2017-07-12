@@ -58,7 +58,8 @@ $(document).ready(function() {
       $guess = $submitGuess.prev(),
       $pastGuesses = $('#guesses ul li'),
       $reset = $('#reset'),
-      $hint = $('#hint');
+      $hint = $('#hint'),
+      hints = game.provideHint();
 
   function makeGuess() {
     var title = '', sub = 'Choose a number between 1 and 100!';
@@ -112,10 +113,10 @@ $(document).ready(function() {
     $pastGuesses.text('-');
     $submitGuess.prop('disabled', false);
     $hint.prop('disabled', false);
+    hints = game.provideHint();
   }
 
   function showHint() {
-    var hints = game.provideHint();
     $title.text('The correct number is either ' + hints[0] + ', ' + hints[1] + ', or ' + hints[2]);
   }
 
