@@ -66,7 +66,7 @@ $(document).ready(function() {
     game.playersGuessSubmission($guess.val());
     $guess.val('');
     if (game.checkGuess()) {
-      $title.text('Congratulations! You guessed correctly!');
+      $title.text('Congratulations! ' + game.winningNumber + ' was the right number!');
       $subtitle.text('Hit Reset to play again.');
       $submitGuess.prop('disabled', true);
       $hint.prop('disabled', true);
