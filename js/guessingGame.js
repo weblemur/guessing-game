@@ -56,6 +56,8 @@ $(document).ready(function() {
       $subtitle = $('#main_header h2'),
       $submitGuess = $('#guess'),
       $guess = $submitGuess.prev(),
+      $pastGuesses = $('#guesses ul li'),
+      $reset = $('#reset'),
       $hint = $('#hint');
 
   function makeGuess() {
@@ -73,6 +75,7 @@ $(document).ready(function() {
       title = 'You have already guessed that number. Try again!';
     }
 
+    $pastGuesses.eq(game.pastGuesses.length).text(game.playersGuess);
     game.pastGuesses.push(game.playersGuess);
 
     if (game.isOver()) {
