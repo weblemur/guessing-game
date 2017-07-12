@@ -51,7 +51,7 @@ Game.prototype.provideHint = function() {
 // Game implementation //
 
 $(document).ready(function() {
-  var game = new Game(),
+  var game = newGame(),
       $title = $('#main_header h1'),
       $subtitle = $('#main_header h2'),
       $submitGuess = $('#guess'),
